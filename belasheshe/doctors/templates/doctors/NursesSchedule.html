@@ -26,6 +26,58 @@
     <main>
         <!-- Your Nurse's Schedule section content goes here -->
         <p>This is the Nurse's Schedule section. You can add content related to nurse scheduling here.</p>
+        <div class="card">
+            <h2>Nurse's Schedule</h2>
+        
+            <!-- Form to assign a nurse to a patient and provide special instructions -->
+            <form id="nurse-assignment-form">
+                <h3>Assign Nurse to Patient</h3>
+                <label for="patient-id">Patient ID:</label>
+                <input type="text" id="patient-id" name="patient-id" required><br>
+        
+                <label for="nurse-id">Nurse ID:</label>
+                <input type="text" id="nurse-id" name="nurse-id" required><br>
+        
+                <label for="job">Job:</label>
+                <input type="text" id="job" name="job" required><br>
+        
+                <label for="instructions">Special Instructions:</label>
+                <textarea id="instructions" name="instructions" rows="4"></textarea><br>
+        
+                <input type="submit" value="Assign Nurse">
+            </form>
+        
+            <!-- Current Nurse-Patient Assignments -->
+            <div class="assignments">
+                <h3>Current Assignments</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Patient ID</th>
+                            <th>Nurse ID</th>
+                            <th>Job</th>
+                            <th>Special Instructions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Nurse-Patient Assignment Rows -->
+                        <tr>
+                            <td>101</td>
+                            <td>N001</td>
+                            <td>Checkup</td>
+                            <td>No special instructions</td>
+                        </tr>
+                        <tr>
+                            <td>102</td>
+                            <td>N002</td>
+                            <td>Medication</td>
+                            <td>Administer medication at 8:00 AM</td>
+                        </tr>
+                        <!-- Add more assignment rows as needed -->
+                    </tbody>
+                </table>
+            </div>
+        </div>        
     </main>
 
     <footer>
