@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Conditions</title>
+</head>
+<body>
+    <h1>Medical Conditions of Members</h1>
+
+    {% for member_data in medical_conditions %}
+    <h2>{{ member_data.member_info.name }} (Member ID: {{ member_data.member_info.member_id }})</h2>
+    <ul>
+        <li>
+            <strong>Name:</strong> {{ member_data.member_info.name }}<br>
+            <strong>Address:</strong> {{ member_data.member_info.address }}<br>
+            <strong>Room No:</strong> {{ member_data.member_info.room_no }}<br>
+            <strong>Email:</strong> {{ member_data.member_info.email }}<br>
+            <strong>Phone:</strong> {{ member_data.member_info.phone }}<br>
+            <strong>DOB:</strong> {{ member_data.member_info.dob }}<br>
+            <strong>Religion:</strong> {{ member_data.member_info.religion }}
+        </li>
+        {% for condition_info in member_data.conditions %}
+        <li>
+            <strong>Condition:</strong> {{ condition_info.condition_name }}<br>
+            <strong>Advice:</strong> {{ condition_info.advice }}<br>
+            <strong>Guideline:</strong> {{ condition_info.guideline }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+</body>
+</html>
