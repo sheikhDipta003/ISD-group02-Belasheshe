@@ -6,7 +6,7 @@ body, h1, h2, p, ul, li, form, input, textarea {
 
 header h1,
 header h2 {
-    color: #fff; /* Change to a light color (e.g., white) */
+    color: #fff; 
 }
 
 /* Apply a basic layout */
@@ -49,8 +49,23 @@ nav.menu {
     text-decoration: underline;
 }
 
+/* Style for the main content area */
+/* Style for the main content area */
 main {
     padding: 20px;
+}
+
+/* Style for the cards */
+.card {
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin-bottom: 20px; /* Add margin to separate the cards vertically */
+}
+
+/* Style for card headings */
+.card h2 {
+    color: #333;
 }
 
 footer {
@@ -65,4 +80,112 @@ h1, h2 {
     color: #333;
 }
 
+/* Style for the profile content */
+.profile-content {
+    display: flex;
+    align-items: center;
+}
+
+/* Style for the profile image */
+.profile-image img {
+    max-width: 150px; /* Adjust the image size as needed */
+    border-radius: 50%; /* Rounded image */
+    margin-right: 20px; /* Space between image and details */
+}
+
+/* Style for the profile details */
+.profile-details h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.profile-details p {
+    color: #666;
+    margin: 0;
+}
+
+/* Style for the prescription form */
+#prescription-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#prescription-form input[type="text"],
+#prescription-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#prescription-form input[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Style for the prescription table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+/* Style for the prescription table header */
+table th {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Style for the prescription table rows */
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Style for form elements */
+#dietary-restriction-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#dietary-restriction-form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#dietary-restriction-form input[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Style for form elements */
+#nurse-assignment-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#nurse-assignment-form input[type="text"],
+#nurse-assignment-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#nurse-assignment-form input[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
 /* Add additional styles for your specific content as needed */
