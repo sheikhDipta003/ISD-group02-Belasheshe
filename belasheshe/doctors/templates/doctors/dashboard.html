@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'doctors/dashboard.css' %}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Doctor dashboard content here -->
+        <header>
+            <h1>Doctor Dashboard</h1>
+        </header>
+
+        <div class="content">
+            <div class="card">
+                <h2>Upcoming Appointments</h2>
+                <ul class="appointment-list">
+                    <li>
+                        <div class="patient-name">John Doe</div>
+                        <div class="appointment-time">August 25, 2023 - 10:00 AM</div>
+                    </li>
+                    <li>
+                        <div class="patient-name">Jane Smith</div>
+                        <div class="appointment-time">August 26, 2023 - 02:30 PM</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2>Medical Reports</h2>
+                <ul class="report-list">
+                    <li>
+                        <div class="report-name">Patient: John Doe</div>
+                        <div class="report-date">Reported On: August 20, 2023</div>
+                    </li>
+                    <li>
+                        <div class="report-name">Patient: Jane Smith</div>
+                        <div class="report-date">Reported On: August 22, 2023</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

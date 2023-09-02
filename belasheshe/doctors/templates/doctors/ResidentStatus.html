@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>See Resident Status</title>
+
+    <link rel="stylesheet" href="{% static 'doctors/ResidentStatus.css' %}" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/b831b59faf.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <button class="btn see-control" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><span id="title">Doctor Tab </span>&nbsp; &nbsp;<i class="fa-solid fa-bars"></i></button>
+   
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Select Action:</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <p>
+                <a href="#">My Profile</a>
+            </p>
+            <p>
+                <a href="#">View Residents</a>
+            </p>
+            <p>
+                <a href="#">View Appointments</a>
+            </p>
+            <p>
+                <a href="#">View Reports</a>
+            </p>
+            <p>
+                <a href="#">Dashboard</a>
+            </p>
+            <p>
+                <a href="#">Logout</a>
+            </p>
+        </div>
+    </div>
+    
+
+    <div class="main-content">
+        <h2>Users</h2>
+        <div class="list-view">
+            <% result.forEach( element => { %>
+            <div class="item">
+                <img src="<%= element.PROFILEIMG %>" /><!-- use image path of the user image -->
+                <div class="item-desc">
+                    <p>
+                    User Name: <%= element.FIRSTNAME %> <%= element.LASTNAME %><br />
+                    User Type: <%= element.STATUS %><br />
+                    No. of Complaints: <%= element.COM_CNT %></p>
+                    <div class="item-actions" id="<%= element.USERID %>">
+                        <a class="btn btn-primary" href="/users/<%= element.USERID %>" role="button">See Profile</a>
+                        <a class="btn btn-info" href="/admin/userComplaint/<%= element.USERID %>" role="button">See Complaints</a>
+                        <a href="/admin/removeUser/<%= element.USERID %>"><button class="btn btn-danger" type="button">Remove User</button></a>
+                    </div>
+                </div>
+
+            </div>
+            
+            <% }) %>
+            
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

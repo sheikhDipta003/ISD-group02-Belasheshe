@@ -1,0 +1,73 @@
+/* css for dashboard page of doctors module */
+/* Reset some default styles */
+body, h1, h2, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #333;
+    font-size: 28px;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card {
+    background-color: #fff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 48%;
+}
+
+.card h2 {
+    color: #555;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.appointment-list,
+.report-list {
+    list-style: none;
+    padding: 0;
+}
+
+.appointment-list li,
+.report-list li {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.patient-name {
+    font-size: 18px;
+    color: #333;
+}
+
+.appointment-time,
+.report-date {
+    font-size: 14px;
+    color: #777;
+}
