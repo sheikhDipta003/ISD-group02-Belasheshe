@@ -5,9 +5,6 @@ from residents.models import Member, ResidentMedCond, MedCond
 def doctor_dashboard(request):
     return render(request, 'doctors/dashboard.html')
 
-from django.shortcuts import render
-from residents.models import Member, ResidentMedCond, MedCond
-
 def member_medical_conditions(request):
     # Retrieve all members and their associated medical conditions
     members = Member.objects.all()
