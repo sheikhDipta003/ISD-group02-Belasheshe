@@ -1,10 +1,12 @@
-from django.shortcuts import render
-from django.core.paginator import Paginator
-from residents.models import Member, ResidentMedCond, MedCond, CurrentCond
+from django.shortcuts import render, redirect
+from django.views import View
+from residents.models import Member, MemberAppoint, MedicineChart,Medicine,Dosage
+from nurse.models import SpecialCheckupSchedule
+from .models import Doctor
 
 # Create your views here.
-def doctor_dashboard(request):
-    return render(request, 'doctors/dashboard.html')
+# def doctor_dashboard(request):
+#     return render(request, 'doctors/dashboard.html')
 
 def member_medical_conditions(request):
     # Retrieve all members with associated medical conditions and current conditions
@@ -59,3 +61,88 @@ def member_medical_conditions(request):
         })
 
     return render(request, 'doctors/medical_conditions.html', {'medical_conditions': medical_conditions, 'page_members': page_members})
+
+
+
+class DashboardView(View):
+    template_name = 'doctors/dashboard.html'  # Update with your actual template name
+
+    def getAppointments(self,doctor_id,date):
+        appoints = MemberAppoint.objects.filter(Doctor_ID=doctor_id,Date=date)
+        sorted_rows = sorted(appoints, key=lambda row: row['Time'])
+        return sorted_rows
+
+    def getCheckups(self,doctor_id):
+        checkups=CheckupSchedule.objects.filter(Doctor_ID=doctor_id)
+        specialCheckups=SpecialCheckupSchedule.objects.filter(Doctor_ID=doctor_id)
+        rows = []
+        for checkup in checkups:
+            checkup_item = CheckupItem.objects.filter(Checkup_id=checkup.Checkup_id)
+            data = {
+                'item': checkup_item,
+                'type': "regular checkup",
+                'riskrate': checkup.Riskrate,
+            }
+            rows.append(data)
+
+        for checkup in specialCheckups:
+            checkup_item = CheckupItem.objects.filter(Checkup_id=checkup.Checkup_id)
+            data = {
+                'item': checkup_item,
+                'type': "special checkup",
+                'riskrate': checkup.Riskrate,
+            }
+            rows.append(data)
+
+        sorted_rows = sorted(rows, key=lambda row: row['riskrate'])
+        return sorted_rows
+
+    def get(self, request, doctor_id, date, *args, **kwargs):
+        appointments = self.getAppointments(doctor_id)
+        checkups=self.getCheckups(doctor_id)
+        return render(request, self.template_name, {'appointments': appointments, "checkups": checkups})
+
+class addSuggesions(View):
+    template_name = 'doctors/addPrescription.html'  # Update with your actual template name
+    def get(self, request, doctor_id, date, *args, **kwargs):
+        return render(request, self.template_name)
+
+    def addPrescriptopn(self, request, member_id):
+        if request.method == 'POST':
+            # Get data from the POST request
+            medicine_name = request.POST.get('medicine_name')
+            time = request.POST.get('time')
+            quantity = request.POST.get('quantity')
+            duration= request.POST.get('duration')
+            date = request.POST.get('date')
+
+            medicine_id = Medicine.objects.filter(Name=medicine_name)
+
+            new_instance = MedicineChart(Member_id=member_id, Date=date)
+            new_instance.save()
+
+            chart_id=new_instance.Chart_id;
+
+            instance = Dosage(Chart_id=chart_id, Medicine_id=medicine_id, Time=time, Quantity=quantity)
+            instance.save()
+            return redirect('success_page')
+
+class createAppointment(View):
+    template_name = 'doctors/createAppointment.html'  # Update with your actual template name
+    def get(self, request, doctor_id, date, *args, **kwargs):
+        return render(request, self.template_name)
+
+    def addAppointment(self, request, doctor_id,member_id):
+        if request.method == 'POST':
+            # Get data from the POST request
+            member_id = request.POST.get('member_id')
+            time = request.POST.get('time')
+            date = request.POST.get('date')
+
+            new_instance = MemberAppoint(Member_ID=member_id, Doctor_ID=doctor_id)
+            new_instance.save()
+            return redirect('success_page')
+
+
+
+
