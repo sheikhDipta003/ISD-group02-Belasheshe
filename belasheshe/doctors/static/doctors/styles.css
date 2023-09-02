@@ -4,6 +4,11 @@ body, h1, h2, p, ul, li, form, input, textarea {
     padding: 0;
 }
 
+header h1,
+header h2 {
+    color: #fff; /* Change to a light color (e.g., white) */
+}
+
 /* Apply a basic layout */
 body {
     font-family: Arial, sans-serif;
