@@ -17,7 +17,7 @@ These instructions will help you set up the project on your local machine and co
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/sheikhDipta003/Bela-Sheshe.git
+    git clone https://github.com/sheikhDipta003/ISD-group02-Belasheshe.git
     ```
 2. Naviagate to the project folder
     ```bash
