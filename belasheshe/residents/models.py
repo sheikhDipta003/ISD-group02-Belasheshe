@@ -15,6 +15,7 @@ class Member(models.Model):
     DOB = models.DateField()
     Religion = models.CharField(max_length=50)
     Account_no = models.CharField(max_length=20)
+    Assigned_nurse=models.ForeignKey(Nurse, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.Name
@@ -49,7 +50,6 @@ class MemberAppoint(models.Model):
 
     def __str__(self):
         return f"Appointment {self.App_ID} for {self.Member_ID}"
-<<<<<<< HEAD
 
 class CheckupItem(models.Model):
     Checkup_Id = models.AutoField(primary_key=True)
@@ -72,8 +72,7 @@ class CheckupItem(models.Model):
 #
 #     def __str__(self):
 #         return f"Special Checkup Schedule for {self.Special_Checkup_Id}"
-=======
-      
+     
 class Medicine(models.Model):
     Medicine_id=models.AutoField(primary_key=True)
     Name=models.CharField(max_length=20)
@@ -102,4 +101,7 @@ class Dosage(models.Model):
     #Frequency=models.CharField(max_length=50)
     Time=models.CharField(max_length=50)
     Quantity=models.CharField(max_length=20)
->>>>>>> c094c3332c935f2ecdb6297fe98d08c0a76d3af2
+
+class CurrentCond(models.Model):
+    Member_id=models.ForeignKey(Member, on_delete=models.CASCADE)
+    Risk_rate=models.IntegerField(max_length=3)
