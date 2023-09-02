@@ -1,11 +1,7 @@
 from django.db import models
-<<<<<<< HEAD
-from viewflow.fields import CompositeKey
-=======
 from residents.models import CheckupItem, Member
 from doctors.models import Doctor
 
->>>>>>> c094c3332c935f2ecdb6297fe98d08c0a76d3af2
 # Create your models here.
 class Nurse(models.Model):
     Nurse_Id = models.AutoField(primary_key=True)
@@ -14,11 +10,6 @@ class Nurse(models.Model):
 
     def __str__(self):
         return f"Checkup {self.Nurse_Id}"
-<<<<<<< HEAD
-
-    #python manage.py makemigrations
-#    python manage.py migrate
-=======
     
 class CheckupSchedule(models.Model):
     Checkup_id=models.OneToOneField(CheckupItem, primary_key=True, on_delete=models.CASCADE)
@@ -42,4 +33,3 @@ class SpecialCheckupSchedule(models.Model):
 
     def __str__(self):
         return f"Special Checkup Schedule for {self.Special_Checkup_Id}"
->>>>>>> c094c3332c935f2ecdb6297fe98d08c0a76d3af2
