@@ -50,23 +50,40 @@ nav.menu {
 }
 
 /* Style for the main content area */
-/* Style for the main content area */
 main {
     padding: 20px;
 }
 
 /* Style for the cards */
+/* Style for the card */
 .card {
-    background-color: #fff;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    margin-bottom: 20px; /* Add margin to separate the cards vertically */
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Style for card headings */
+/* Style for the card heading */
 .card h2 {
+    font-size: 18px;
     color: #333;
+    margin-bottom: 10px;
 }
+
+/* Style for card content */
+.card-content {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Hover effect */
+.card:hover {
+    background-color: #e0e0e0;
+    transition: background-color 0.2s ease-in-out;
+}
+
 
 footer {
     background-color: #333;
