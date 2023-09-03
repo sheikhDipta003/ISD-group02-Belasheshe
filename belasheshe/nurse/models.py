@@ -1,12 +1,14 @@
 from django.db import models
-from viewflow.fields import CompositeKey
+# from viewflow.fields import CompositeKey
 from residents.models import CheckupItem
-# from residents.models import Member
+from residents.models import MedCond
 from doctors.models import Doctor
 
 # Create your models here.
 class Nurse(models.Model):
     Nurse_Id = models.AutoField(primary_key=True)
+    Name=models.CharField(max_length=100,null = True)
+    Password = models.CharField(max_length=100,null = True)
     Qualifications = models.CharField(max_length=50)
     Shift = models.CharField(max_length=20)
 
@@ -14,10 +16,11 @@ class Nurse(models.Model):
         return f"Checkup {self.Nurse_Id}"
     
 class Member(models.Model):
-    Member_ID = models.IntegerField(primary_key=True, max_length=10)
+    Member_ID = models.IntegerField(primary_key=True)
     # Room_no = models.ForeignKey(ResidentRoomAsgn, on_delete=models.CASCADE)
     Room_no = models.IntegerField()
     Name = models.CharField(max_length=100)
+    Password = models.CharField(max_length=100,null = True)
     Address = models.TextField()
     Email = models.EmailField()
     Phone = models.CharField(max_length=15)
@@ -54,10 +57,9 @@ class SpecialCheckupSchedule(models.Model):
 
 # Create a model named ResidentMedCond
 class ResidentMedCond(models.Model):
-    id = CompositeKey(columns=['Member_ID', 'Cond_ID'])
     Member_ID = models.ForeignKey(Member, on_delete=models.CASCADE)
-    # Cond_ID = models.ForeignKey(MedCond, on_delete=models.CASCADE)
-    Cond_ID = models.IntegerField()
+    Cond_ID = models.ForeignKey(MedCond, on_delete=models.CASCADE)
+    # Cond_ID = models.IntegerField()
 
     def __str__(self):
         return f"Medical Condition for {self.Member_ID}"
@@ -66,10 +68,10 @@ class ResidentMedCond(models.Model):
 class MemberAppoint(models.Model):
     App_ID = models.AutoField(primary_key=True)
     Member_ID = models.ForeignKey(Member, on_delete=models.CASCADE)
-    # Doctor_ID = models.ForeignKey(Doctor, on_delete=models.CASCADE)
-    # Nurse_ID = models.ForeignKey(Nurse, on_delete=models.CASCADE)
-    Doctor_ID = models.IntegerField()
-    Nurse_ID = models.IntegerField()
+    Doctor_ID = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    Nurse_ID = models.ForeignKey(Nurse, on_delete=models.CASCADE)
+    # Doctor_ID = models.IntegerField()
+    # Nurse_ID = models.IntegerField()
     Date = models.DateField()
     Time = models.TimeField()
 
@@ -95,7 +97,6 @@ class MedicineChart(models.Model):
         return f"Checkup {self.Chart_id}"
 
 class Dosage(models.Model):
-    id = CompositeKey(columns=['Chart_id', 'Medicine_id'])
     Chart_id=models.ForeignKey(MedicineChart, on_delete=models.CASCADE)
     Medicine_id=models.ForeignKey(Medicine, on_delete=models.CASCADE)
     #Duration_from=models.DateField()
@@ -107,4 +108,4 @@ class Dosage(models.Model):
 
 class CurrentCond(models.Model):
     Member_id=models.ForeignKey(Member, on_delete=models.CASCADE)
-    Risk_rate=models.IntegerField(max_length=3)
+    Risk_rate=models.IntegerField()

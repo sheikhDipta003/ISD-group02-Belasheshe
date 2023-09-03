@@ -2,7 +2,7 @@ from django.db import models
 # from viewflow.fields import CompositeKey
 # from healthcare.models import ResidentRoomAsgn, Doctor, Nurse, MedCond
 # from .member import Member
-# from nurse.models import Nurse
+# from nurse.models import MedicineChart,Medicine
 #from doctors.models import Doctor
 
 
@@ -24,7 +24,6 @@ class CheckupItem(models.Model):
 
     def __str__(self):
         return f"Checkup {self.Checkup_Id}"
-
 
 # class SpecialCheckupSchedule(models.Model):
 #     Special_Checkup_Id = models.OneToOneField(CheckupItem, primary_key=True, on_delete=models.CASCADE)
