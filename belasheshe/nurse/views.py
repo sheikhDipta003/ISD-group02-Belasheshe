@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from residents.models import Member
-from .models import Medicine, MedicineChart,Dosage,CheckupSchedule,CheckupItem
+from residents.models import Medicine,MedicineChart,Dosage
+from .models import CheckupItem,CheckupSchedule
+# from nurse.models import 
 
 class DashboardView(View):
     template_name = 'nurse/dashboard.html'  # Update with your actual template name
