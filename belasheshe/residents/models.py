@@ -1,5 +1,5 @@
 from django.db import models
-# from viewflow.fields import CompositeKey
+from viewflow.fields import CompositeKey
 # from healthcare.models import ResidentRoomAsgn, Doctor, Nurse, MedCond
 # from .member import Member
 from nurse.models import Nurse,Member
@@ -48,11 +48,21 @@ class MemberAppoint(models.Model):
 #     def __str__(self):
 #         return f"Special Checkup Schedule for {self.Special_Checkup_Id}"
      
+class Medicine(models.Model):
+    Medicine_id=models.AutoField(primary_key=True)
+    Name=models.CharField(max_length=20)
+    Mg=models.IntegerField()
+    Company=models.CharField(max_length=50)
+    Available=models.IntegerField()
 
     def __str__(self):
         return f"Medicine {self.Medicine_id} {self.Name}"
     
-
+class MedicineChart(models.Model):
+    Chart_id=models.AutoField(primary_key=True)
+    Member_id=models.ForeignKey(Member, on_delete=models.CASCADE)
+    Date=models.DateField()
+    
     def __str__(self):
         return f"Medicine chart {self.Chart_id} for {self.Member_id}"
     
