@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from residents.models import Medicine,MedicineChart,Dosage
-from .models import CheckupItem,CheckupSchedule
-# from nurse.models import 
+from .models import Member
+from .models import Medicine, MedicineChart,Dosage,CheckupSchedule
+from residents.models import CheckupItem
 
 class DashboardView(View):
     template_name = 'nurse/dashboard.html'  # Update with your actual template name
@@ -66,22 +66,32 @@ class CheckupDataListView(View):
     template_name = 'nurse/checkup_data_list.html'  # Update with your actual template name
 
     def get_checkup_data(self, order_by):
-        checkup_data = (
-            CheckupSchedule.objects
-            .filter(completed=True)  # Filter completed checkups, adjust as needed
-            .order_by(order_by)  # Order by the selected field (Blood_pressure, Sugar, or Heartrate)
-        )
+        # Fetch all checkup data and join it with Member and CheckupItem
+        checkup_data = CheckupSchedule.objects.select_related('Member_Id', 'Checkup_id').all()
+
+        # Sort the data based on the selected ordering
+        if order_by == 'blood_pressure':
+            checkup_data = sorted(checkup_data, key=lambda item: item.Checkup_id.Blood_Pressure)
+        elif order_by == 'sugar':
+            checkup_data = sorted(checkup_data, key=lambda item: item.Checkup_id.Sugar)
+        elif order_by == 'heartrate':
+            checkup_data = sorted(checkup_data, key=lambda item: item.Checkup_id.Heartrate)
+
         return checkup_data
 
     def get(self, request, *args, **kwargs):
-        # Determine the desired order field from the query parameter (default to Blood_pressure)
-        order_by = request.GET.get('order_by', 'Blood_pressure')
+        # Get the sorting option from the query parameters (e.g., ?order_by=blood_pressure)
+        order_by = request.GET.get('order_by', 'blood_pressure')  # Default to sorting by blood pressure
 
         # Get the sorted checkup data
         sorted_checkup_data = self.get_checkup_data(order_by)
 
-        return render(request, self.template_name, {'checkup_data': sorted_checkup_data})
+        context = {
+            'checkup_data': sorted_checkup_data,
+            'order_by': order_by,
+        }
 
+        return render(request, self.template_name, context)
 
 class ResidentConditionView(View):
     template_name = 'nurse/residentCondition.html'  # Update with your actual template name

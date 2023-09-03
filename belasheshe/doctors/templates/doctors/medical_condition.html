@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Conditions</title>
+</head>
+<body>
+    <h1>Medical Conditions of Members</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Room No</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>DOB</th>
+                <th>Religion</th>
+                <th>Risk Rate</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for member_data in medical_conditions %}
+            <tr>
+                <td>{{ member_data.member_info.name }}</td>
+                <td>{{ member_data.member_info.address }}</td>
+                <td>{{ member_data.member_info.room_no }}</td>
+                <td>{{ member_data.member_info.email }}</td>
+                <td>{{ member_data.member_info.phone }}</td>
+                <td>{{ member_data.member_info.dob }}</td>
+                <td>{{ member_data.member_info.religion }}</td>
+                <td>{{ member_data.risk_rate }}</td>
+            </tr>
+            <tr>
+                <td colspan="8">
+                    <ul>
+                        {% for condition_info in member_data.conditions %}
+                        <li>
+                            <strong>Condition:</strong> {{ condition_info.condition_name }}<br>
+                            <strong>Advice:</strong> {{ condition_info.advice }}<br>
+                            <strong>Guideline:</strong> {{ condition_info.guideline }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_members.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_members.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current-page">{{ page_members.number }}</span>
+
+            {% if page_members.has_next %}
+                <a href="?page={{ page_members.next_page_number }}">next</a>
+                <a href="?page={{ page_members.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</body>
+</html>

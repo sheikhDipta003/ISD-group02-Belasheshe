@@ -1,0 +1,208 @@
+/* Reset some default browser styles */
+body, h1, h2, p, ul, li, form, input, textarea {
+    margin: 0;
+    padding: 0;
+}
+
+header h1,
+header h2 {
+    color: #fff; 
+}
+
+/* Apply a basic layout */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+nav.menu {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.menu li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+.menu a:hover {
+    text-decoration: underline;
+}
+
+/* Style for the main content area */
+main {
+    padding: 20px;
+}
+
+/* Style for the cards */
+/* Style for the card */
+.card {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Style for the card heading */
+.card h2 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Style for card content */
+.card-content {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Hover effect */
+.card:hover {
+    background-color: #e0e0e0;
+    transition: background-color 0.2s ease-in-out;
+}
+
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Styles for specific elements within the main content */
+h1, h2 {
+    color: #333;
+}
+
+/* Style for the profile content */
+.profile-content {
+    display: flex;
+    align-items: center;
+}
+
+/* Style for the profile image */
+.profile-image img {
+    max-width: 150px; /* Adjust the image size as needed */
+    border-radius: 50%; /* Rounded image */
+    margin-right: 20px; /* Space between image and details */
+}
+
+/* Style for the profile details */
+.profile-details h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.profile-details p {
+    color: #666;
+    margin: 0;
+}
+
+/* Style for the prescription form */
+#prescription-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#prescription-form input[type="text"],
+#prescription-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#prescription-form input[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Style for the prescription table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+/* Style for the prescription table header */
+table th {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Style for the prescription table rows */
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Style for form elements */
+#dietary-restriction-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#dietary-restriction-form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#dietary-restriction-form input[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Style for form elements */
+#nurse-assignment-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#nurse-assignment-form input[type="text"],
+#nurse-assignment-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#nurse-assignment-form input[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+/* Add additional styles for your specific content as needed */
