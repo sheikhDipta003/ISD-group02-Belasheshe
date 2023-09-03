@@ -1,20 +1,19 @@
 from django.db import models
-from viewflow.fields import CompositeKey
-from residents.models import CheckupItem
-# from residents.models import Member
 from doctors.models import Doctor
-
+# from residents.models import Member
 # Create your models here.
 class Nurse(models.Model):
     Nurse_Id = models.AutoField(primary_key=True)
     Qualifications = models.CharField(max_length=50)
     Shift = models.CharField(max_length=20)
+    Name=models.CharField(max_length=50, default='Unknown')
+    
 
     def __str__(self):
-        return f"Checkup {self.Nurse_Id}"
-    
+        return f"Checkup {self.Nurse_Id} Qualifications {self.Qualifications} Shift {self.Shift}"
+
 class Member(models.Model):
-    Member_ID = models.IntegerField(primary_key=True, max_length=10)
+    Member_ID = models.AutoField(primary_key=True)
     # Room_no = models.ForeignKey(ResidentRoomAsgn, on_delete=models.CASCADE)
     Room_no = models.IntegerField()
     Name = models.CharField(max_length=100)
@@ -27,8 +26,18 @@ class Member(models.Model):
     Assigned_nurse=models.ForeignKey(Nurse, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.Name
-    
+        return f"{self.Name} {self.Member_ID}"
+
+
+class CheckupItem(models.Model):
+    Checkup_Id = models.AutoField(primary_key=True)
+    Blood_Pressure = models.CharField(max_length=20)
+    Sugar = models.DecimalField(max_digits=5, decimal_places=2)
+    Heartrate = models.IntegerField()
+
+    def __str__(self):
+        return f"Checkup {self.Checkup_Id}"
+
 class CheckupSchedule(models.Model):
     Checkup_id=models.OneToOneField(CheckupItem, primary_key=True, on_delete=models.CASCADE)
     Member_Id = models.ForeignKey(Member, on_delete=models.CASCADE)
